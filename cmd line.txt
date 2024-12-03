@@ -1,0 +1,1 @@
+python -c "from pdf2docx import Converter; Converter('C:/Users/Cp9-30/pdf-to-word-api/uploads/fyp.pdf').convert('C:/Users/Cp9-30/pdf-to-word-api/converted/fyp.docx')"
