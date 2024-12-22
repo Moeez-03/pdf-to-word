@@ -3,42 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF to Word</title>
+    <title>File Converter</title>
+    <!-- Bootstrap CSS -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    />
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: #fff;
             padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
         h1 {
-            color: #333;
-        }
-        form {
-            margin-top: 20px;
-        }
-        input[type="file"] {
-            margin: 10px 0;
+            color: #4CAF50;
+            font-weight: bold;
         }
         button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
+            transition: all 0.3s ease;
         }
         button:hover {
-            background-color: #45a049;
+            background-color: #45a049 !important;
+            transform: translateY(-2px);
+        }
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #6c757d;
         }
     </style>
 </head>
 <body>
-    <h1>PDF to Word Converter</h1>
-    <form action="/convert" method="post" enctype="multipart/form-data">
-        <input type="file" name="pdf" accept=".pdf" required />
-        <br />
-        <button type="submit">Convert</button>
-    </form>
+    <div class="container text-center">
+        <h1 class="mb-4">File Converter</h1>
+        <p class="text-muted">
+            Convert your files seamlessly. Supported formats: PDF to Word and Word to PDF.
+        </p>
+        <ul class="nav nav-tabs mb-4" id="converterTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button
+                    class="nav-link active"
+                    id="pdf-to-word-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#pdf-to-word"
+                    type="button"
+                    role="tab"
+                    aria-controls="pdf-to-word"
+                    aria-selected="true"
+                >
+                    PDF to Word
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button
+                    class="nav-link"
+                    id="word-to-pdf-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#word-to-pdf"
+                    type="button"
+                    role="tab"
+                    aria-controls="word-to-pdf"
+                    aria-selected="false"
+                >
+                    Word to PDF
+                </button>
+            </li>
+        </ul>
+        <div class="tab-content" id="converterTabContent">
+            <!-- PDF to Word Tab -->
+            <div
+                class="tab-pane fade show active"
+                id="pdf-to-word"
+                role="tabpanel"
+                aria-labelledby="pdf-to-word-tab"
+            >
+                <form
+                    action="/convert/pdf-to-word"
+                    method="post"
+                    enctype="multipart/form-data"
+                >
+                    <div class="mb-3">
+                        <label for="pdfFiles" class="form-label">Upload PDF Files</label>
+                        <input
+                            class="form-control"
+                            type="file"
+                            id="pdfFiles"
+                            name="pdfs"
+                            accept=".pdf"
+                            multiple
+                            required
+                        />
+                    </div>
+                    <button class="btn btn-success w-100" type="submit">
+                        Convert to Word
+                    </button>
+                </form>
+            </div>
+            <!-- Word to PDF Tab -->
+            <div
+                class="tab-pane fade"
+                id="word-to-pdf"
+                role="tabpanel"
+                aria-labelledby="word-to-pdf-tab"
+            >
+                <form
+                    action="/convert/word-to-pdf"
+                    method="post"
+                    enctype="multipart/form-data"
+                >
+                    <div class="mb-3">
+                        <label for="wordFiles" class="form-label">Upload Word Files</label>
+                        <input
+                            class="form-control"
+                            type="file"
+                            id="wordFiles"
+                            name="words"
+                            accept=".docx"
+                            multiple
+                            required
+                        />
+                    </div>
+                    <button class="btn btn-primary w-100" type="submit">
+                        Convert to PDF
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 File Converter. Built with ❤️ and Bootstrap.</p>
+    </footer>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
